@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const File = require("./File")
+
 const folderSchema = new mongoose.Schema({
   name: {
     type: String,

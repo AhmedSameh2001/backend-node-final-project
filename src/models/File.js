@@ -17,6 +17,10 @@ const fileSchema = new mongoose.Schema({
   isSelected: {
     type: Boolean,
     default: false
+  },
+  folder:{
+    type: mongoose.Schema.Types,
+    ref: "Folder"
   }
 });
 
