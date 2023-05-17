@@ -16,10 +16,10 @@ const fileSchema = new mongoose.Schema({
   },
   folder:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Folder"
+    ref: "Folder1"
   }
 });
 
-const File = mongoose.model('File', fileSchema);
+const File = mongoose.model('File1', fileSchema);
 
 module.exports = File;
