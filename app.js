@@ -1,9 +1,7 @@
-// Import required packages
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
 // Import routes
@@ -15,7 +13,6 @@ const fileRouter = require('./src/routes/FileRouter');
 const app = express();
 
 // Set up middleware
-// app.use(cors());
 app.use(bodyParser.json());
 app.use(fileUpload());
 

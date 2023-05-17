@@ -4,13 +4,14 @@ const fileController = require('../controllers/FileController');
 
 //GET
 router.get('/', fileController.getFiles);
-router.get('/:name', fileController.searchFile);
+router.get('/searchFile:name', fileController.searchFile);
 // POST
-router.post('/', fileController.createFile);
-router.post('/upload', fileController.uploadFile);
-// put
-router.put('/:id', fileController.updateFile);
+router.post('/createFile', fileController.createFile);
+router.post('/uploadFile', fileController.uploadFile);
+// PUT
+router.put('/updateFile:id', fileController.updateFile);
+router.put('/files/:fileId/move/:folderId', fileController.moveFile);
 // DELETE
-router.delete('/:id', fileController.deleteFile);
+router.delete('/deleteFile:id', fileController.deleteFile);
 
 module.exports = router;

@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const fileSchema = new mongoose.Schema({
-  id:{
-    type: Number,
-    unique: true
-  },
   name: {
     type: String,
     required: true,
@@ -19,7 +15,7 @@ const fileSchema = new mongoose.Schema({
     default: false
   },
   folder:{
-    type: mongoose.Schema.Types,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Folder"
   }
 });

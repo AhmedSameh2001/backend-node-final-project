@@ -87,6 +87,30 @@ const uploadFile = async (req, res) => {
   }
 };
 
+const moveFile = async (req, res) => {
+  const { fileId, folderId } = req.params;
+  try {
+    const file = await File.findById(fileId);
+    if (!file) {
+      throw new Error('File not found');
+    }
+
+    
+    const folder = await Folder.findById(folderId);
+    if (!folder) {
+      throw new Error('Destination folder not found');
+    }
+
+    // Update the file's folder reference
+    file.folder = folderId;
+    await file.save();
+
+    res.status(200).json({ message: 'File moved successfully' });
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+};
+
 module.exports = {
   createFile,
   deleteFile,
@@ -94,4 +118,5 @@ module.exports = {
   searchFile,
   getFiles,
   uploadFile,
+  moveFile,
 };

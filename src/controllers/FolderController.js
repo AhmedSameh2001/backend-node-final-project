@@ -69,5 +69,5 @@ module.exports = {
   searchFolder,
   deleteFolder,
   updateFolder,
-  getFolders,
+  getFolders
 };
