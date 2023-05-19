@@ -45,7 +45,7 @@ const updateFile = async (req, res) => {
 
 const searchFile = async (req, res) => {
   try {
-    const { name } = req.params;
+    const { name } = req.query;
     const files = await File.find({ name });
     res.status(200).json({ data: files });
   } catch (error) {

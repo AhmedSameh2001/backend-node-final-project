@@ -2,11 +2,15 @@ const express = require('express');
 const router = express.Router();
 const folderController = require('../controllers/FolderController');
 
+//GET
 router.get('/', folderController.getFolders);
-router.get('/searchFolder:name', folderController.searchFolder);
+router.get('/searchFolder', folderController.searchFolder);
+// POST
 router.post('/createFolder', folderController.createFolder);
-router.put('/updateFolder:id', folderController.updateFolder);
-router.delete('/deleteFolder:id', folderController.deleteFolder);
+// PUT
+router.put('/updateFolder/:id', folderController.updateFolder);
+// DELETE
+router.delete('/deleteFolder/:id', folderController.deleteFolder);
 
 
 
