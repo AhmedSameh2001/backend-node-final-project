@@ -68,6 +68,7 @@ const getFiles = async (req, res) => {
 
 const uploadFile = async (req, res) => {
   try {
+    console.log(req.file)
     if (!req.files) {
       return res.status(400).json({ message: 'No files were uploaded' });
     }
@@ -91,10 +92,7 @@ const uploadFile = async (req, res) => {
 const moveFile = async (req, res) => {
   const { fileId } = req.params;
   const { folderId } = req.body;
-  console.log(fileId)
-  console.log(folderId)
   try {
-    console.log("===============================")
     const folder = await Folder.findById({_id : folderId});
     console.log(folder)
     if (!folder) {
@@ -105,10 +103,6 @@ const moveFile = async (req, res) => {
     if (!file) {
       throw new Error('File not found');
     }
-
-    // Update the file's folder reference
-    // file.folder = folderId;
-    // await file.save();
 
     res.status(200).json({ message: 'File moved successfully' });
   } catch (err) {
