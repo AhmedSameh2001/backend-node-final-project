@@ -1,4 +1,5 @@
 const File = require('../models/File');
+const Folder = require('../models/Folder')
 
 const createFile = async (req, res) => {
   try {
@@ -93,7 +94,9 @@ const moveFile = async (req, res) => {
   console.log(fileId)
   console.log(folderId)
   try {
-    const folder = await Folder.findById(folderId);
+    console.log("===============================")
+    const folder = await Folder.findById({_id : folderId});
+    console.log(folder)
     if (!folder) {
       throw new Error('Destination folder not found');
     }

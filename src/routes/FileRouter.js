@@ -7,10 +7,10 @@ router.get('/', fileController.getFiles);
 router.get('/searchFile', fileController.searchFile);
 // POST
 router.post('/createFile', fileController.createFile);
-router.post('/uploadFile', fileController.uploadFile);// ..........?
+router.post('/uploadFile', fileController.uploadFile);
 // PUT
 router.put('/updateFile/:id', fileController.updateFile);
-router.put('/file/moveFile/:fileId', fileController.moveFile);// ..........?
+router.put('/file/:fileId/moveFile', fileController.moveFile);
 // DELETE
 router.delete('/deleteFile/:id', fileController.deleteFile);
 
