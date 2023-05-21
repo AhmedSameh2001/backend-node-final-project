@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const fileUpload = require('express-fileupload');
 const morgan = require('morgan')
 // Import routes
 const userRouter = require('./src/routes/UserRouter')
@@ -15,7 +14,6 @@ const app = express();
 // Set up middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(fileUpload());
 app.use(express.json())
 app.use(morgan("dev"))
 // Set up database connection
