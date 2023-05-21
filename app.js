@@ -3,6 +3,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/src/images Upload'); // المجلد الذي ترغب في حفظ الملفات فيه
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // تسمية الملفات المحملة
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // Import routes
 const userRouter = require('./src/routes/UserRouter')
@@ -16,6 +28,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use(express.json())
+app.use(upload.single('file'));
 // Set up database connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))

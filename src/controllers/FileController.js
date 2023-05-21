@@ -1,4 +1,5 @@
 const File = require('../models/File');
+const multer = require('multer');
 
 
 const createFile = async (req, res) => {
@@ -73,6 +74,7 @@ const uploadFile = async (req, res) => {
     }
     const { file } = req.files;
     const newFile = new File({ name: file.name });
+    console.log(req.files)
     await newFile.save();
     file.mv(`${__dirname}/uploads/${newFile._id}`, (err) => {
       if (err) {
@@ -88,14 +90,16 @@ const uploadFile = async (req, res) => {
 };
 
 const moveFile = async (req, res) => {
-  const { fileId, folderId } = req.params;
+  const { fileId} = req.params;
+  const { folderId } = req.body;
+
   try {
     const file = await File.findById(fileId);
     if (!file) {
       throw new Error('File not found');
     }
 
-    
+
     const folder = await Folder.findById(folderId);
     if (!folder) {
       throw new Error('Destination folder not found');
