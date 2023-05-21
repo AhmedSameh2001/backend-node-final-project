@@ -88,28 +88,28 @@ const uploadFile = async (req, res) => {
 };
 
 const moveFile = async (req, res) => {
-  const { fileId} = req.params;
+  const { fileId } = req.params;
   const { folderId } = req.body;
-
+  console.log(fileId)
+  console.log(folderId)
   try {
-    const file = await File.findById(fileId);
-    if (!file) {
-      throw new Error('File not found');
-    }
-
-
     const folder = await Folder.findById(folderId);
     if (!folder) {
       throw new Error('Destination folder not found');
     }
 
+    const file = await File.findByIdAndUpdate({_id : fileId } ,{folder:folderId},{new : true});
+    if (!file) {
+      throw new Error('File not found');
+    }
+
     // Update the file's folder reference
-    file.folder = folderId;
-    await file.save();
+    // file.folder = folderId;
+    // await file.save();
 
     res.status(200).json({ message: 'File moved successfully' });
   } catch (err) {
-    res.status(404).json({ error: err.message });
+    res.status(500).json({ error: err.message , stack:err.stack });
   }
 };
 

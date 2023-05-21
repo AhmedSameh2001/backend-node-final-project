@@ -10,7 +10,7 @@ router.post('/createFile', fileController.createFile);
 router.post('/uploadFile', fileController.uploadFile);// ..........?
 // PUT
 router.put('/updateFile/:id', fileController.updateFile);
-router.put('/file/:fileId/moveFile', fileController.moveFile);// ..........?
+router.put('/file/moveFile/:fileId', fileController.moveFile);// ..........?
 // DELETE
 router.delete('/deleteFile/:id', fileController.deleteFile);
 
