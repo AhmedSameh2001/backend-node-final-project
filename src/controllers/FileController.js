@@ -1,6 +1,4 @@
 const File = require('../models/File');
-const multer = require('multer');
-
 
 const createFile = async (req, res) => {
   try {
@@ -74,7 +72,7 @@ const uploadFile = async (req, res) => {
     }
     const { file } = req.files;
     const newFile = new File({ name: file.name });
-    console.log(req.files)
+    console.log(file.name)
     await newFile.save();
     file.mv(`${__dirname}/uploads/${newFile._id}`, (err) => {
       if (err) {
