@@ -69,20 +69,21 @@ const getFiles = async (req, res) => {
 const uploadFile = async (req, res) => {
   try {
     console.log(req.file)
-    if (!req.files) {
+    if (!req.file) {
       return res.status(400).json({ message: 'No files were uploaded' });
     }
-    const { file } = req.files;
-    const newFile = new File({ name: file.name });
+    const file  = req.file.originalname;
+    console.log(file);
+    const newFile = new File({ name: file });
     console.log(file.name)
     await newFile.save();
-    file.mv(`${__dirname}/uploads/${newFile._id}`, (err) => {
-      if (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Server Error' });
-      }
-      res.status(201).json({ message: 'File uploaded successfully', data: newFile });
-    });
+    // file.mv(`${__dirname}/uploads/${newFile._id}`, (err) => {
+    //   if (err) {
+    //     console.error(err);
+    //     res.status(500).json({ message: 'Server Error' });
+    //   }
+    // });
+    res.status(201).json({ message: 'File uploaded successfully', data: newFile });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });

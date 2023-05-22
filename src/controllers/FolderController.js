@@ -1,6 +1,7 @@
 const Folder = require('../models/Folder');
 
 const createFolder = async (req, res) => {
+  console.log('->'+JSON.stringify(req.body));
   const { name } = req.body;
   console.log(req.body)
   try {
@@ -8,7 +9,7 @@ const createFolder = async (req, res) => {
     await folder.save();
     res.status(201).json({ message: 'Folder created successfully' });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 

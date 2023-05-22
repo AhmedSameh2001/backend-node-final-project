@@ -12,10 +12,17 @@ const userController = {
         return res.status(409).json({ message: 'Username already exists' });
       }
 
-      const hashedPassword = await bcrypt.hash(password, 10);
+      bcrypt.hash(password, 10,(err,hash)=>{
+        if(err) {
+          return res.status(500).json({ message: 'Internal server error'+err.message });
+        }else{
+          const newUser = new User({ email, username, password: hash });
+           newUser.save();
+        }
+      });
 
-      const newUser = new User({ email, username, password: hashedPassword });
-      await newUser.save();
+      // const newUser = new User({ email, username, password: hashedPassword });
+      // await newUser.save();
 
       res.status(201).json({ message: 'User account created successfully' });
     } catch (error) {
