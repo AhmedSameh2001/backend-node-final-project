@@ -16,7 +16,7 @@ const userController = {
         if(err) {
           return res.status(500).json({ message: 'Internal server error'+err.message });
         }else{
-          const newUser = new User({ email, username, password: hash });
+          const newUser = new User({ email , username, password: hash });
            newUser.save();
         }
       });
